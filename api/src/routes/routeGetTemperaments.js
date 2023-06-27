@@ -3,9 +3,10 @@ const { getTemperaments } = require("../controllers/getTemperaments");
 
 const routeGetTemperaments= Router();
 
-routeGetTemperaments.get("/temperaments", (req, res) => {
+routeGetTemperaments.get("/",async (req, res) => {
     try {
-        res.status(200).json(getTemperaments())
+        const temperaments = await getTemperaments();
+        res.status(200).json(temperaments)
     } catch (error) {
         res.status(404).json({ "error": error.message });
     };

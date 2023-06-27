@@ -48,20 +48,20 @@ const getDBDogs = async () => {
       },
     }
   });
-  console.log(dogs);
+  //console.log(dogs);
   return dogs;
 }
-console.log(getDBDogs());
+//console.log(getDBDogs());
 
 
 // Funcion que trae todo
 const getAllDogs = async () => {
   const apiDogs = await getAPIDogs();
   const dbDogs = await getDBDogs();
-  const totalDogs = apiDogs.concat(dbDogs)
+  const totalDogs = [...apiDogs,...dbDogs]
   //console.log(totalDogs);
   if(totalDogs.length<1){
-    throw Error("No se encontraron perros");
+    throw new Error("No se encontraron perros");
   }
   return totalDogs;
 };

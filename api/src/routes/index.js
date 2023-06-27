@@ -4,8 +4,7 @@ const routerGetDogsbyName = require("./routeGetDogsbyName")
 const routeGetDogById = require("./routeGetDogById")
 const routePostDogs = require("./routePostDogs")
 const routeGetTemperaments = require("./routeGetTemperaments")
-
-
+ 
 // Importar todos los routers;
 // Ejemplo: const authRouter = require('./auth.js');
 
@@ -19,6 +18,7 @@ router.use("/dogs", routerGetDogs);
 router.use("/dogs", routerGetDogsbyName);
 router.use("/dogs", routeGetDogById);
 router.use("/dogs", routePostDogs);
-router.use("/dogs", routeGetTemperaments);
+router.use("/temperaments", routeGetTemperaments);
+
 
 module.exports = router;

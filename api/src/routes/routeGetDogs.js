@@ -3,9 +3,10 @@ const { getAllDogs, getAPIDogs, getDBDogs } = require("../controllers/getDogs");
 
 const routerGetDogs = Router();
 
-routerGetDogs.get("/dogs", (req, res) => {
+routerGetDogs.get("/all",async (req, res) => {
     try {
-        res.status(200).json(getAllDogs())
+        const dogs = await getAllDogs();
+        res.status(200).json(dogs)
 
     } catch (error) {
         res.status(400).json({ "error": error.message });
