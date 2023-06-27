@@ -24,7 +24,7 @@ const getAPIDogs = async () => {
       temperament: dato.temperament,
       life_span: dato.life_span,
       image: dato.image.url,
-      IntheDB: false
+      intheDB: false
     };
     //console.log(dog);
     return dog;
@@ -44,12 +44,27 @@ const getDBDogs = async () => {
       model: Temperament,
       attributes: ['name'],
       through: {
-        attributes: [],//asociación de muchos a muchos entre Dog y Temperament
+        attributes: [],
       },
+      raw: true,
     }
   });
+  const dogsDB = dogs?.map(dbDog => {
+    return {
+      id: dbDog.id,
+      name: dbDog.name,
+      weightMin: dbDog.weightMin,
+      weightMax: dbDog.weightMax,
+      heightMin: dbDog.heightMin,
+      heightMax: dbDog.heightMax,
+      life_span: dbDog.life_span,
+      image: dbDog.image,
+      intheDB: dbDog.intheDB,
+      temperament: dbDog.temperaments?.map(temperament => temperament.name),
+    }
+  })
   //console.log(dogs);
-  return dogs;
+  return dogsDB;
 }
 //console.log(getDBDogs());
 
