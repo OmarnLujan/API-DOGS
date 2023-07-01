@@ -8,11 +8,12 @@ const getDogsbyName = async (name) => {
     if (!dogs.length) {
         throw new Error("Esta raza no existe");
     }
-    console.log(dogs);
+    //console.log(dogs);
     return dogs;
 };
-console.log(getDogsbyName("Miniature"))
-console.log(getDogsbyName("Pepito"))
+
+//console.log(getDogsbyName("gaba"))
+//console.log(getDogsbyName("Pepito"))
 
 module.exports = { getDogsbyName };
 

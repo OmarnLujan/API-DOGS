@@ -25,6 +25,7 @@ const postDog = async (name, heightMin, heightMax, weightMin, weightMax, life_sp
     if (TemperamentCount === 0) {
         await getTemperaments();
     }
+    //Crea una promesa y busca si existe el temperamento
     const tempsEncontrados = await Promise.all(
         temperament.map(async (temp) => {
             const tempEncontrado = await Temperament.findOne({ where: { name: temp } });
@@ -61,7 +62,7 @@ let dog2 = {
     image: "image",
     temperament: ["Bubbly", "Curius"]
 }
-//postDog("Miniature Pepito",2,4,10,12,12,"image",["Bubbly", "Curious"]);
+//postDog("Gaba",2,4,10,12,12,"image",["Bubbly", "Curious"]);
 //
 
 module.exports = { postDog };

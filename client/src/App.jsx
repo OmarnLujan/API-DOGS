@@ -1,35 +1,39 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import "./App.css";
+import axios from "axios";
+import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+// *! rafc recordar 
+import Home from "./components/home/Home";
+import Detail from "./components/detail/Detail";
+import Form from "./components/form/Form";
+import Nav from "./components/nav/nav";
+import Landing from "./components/landing/Landing";
+
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [access, setAccess] = useState(false);
 
+  const navigate = useNavigate();
+
+  async function login() {
+    setAccess(true);
+  }
+  //Niego la navegacion a cualquier lado que no sea "/" la landing page
+  useEffect(() => {
+    !access && navigate("/");
+  }, [access]);
+
+  const location = useLocation();
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <div>
+      <Routes>
+        <Route exact path="/" element={<Landing login = {login} />} />
+        <Route exact path="/home" element={<Home />} />
+        <Route exact path="/detail/:id" element={<Detail />} />
+        <Route path="/form" element={<Form />} />
+      </Routes>
+    </div>
+  );
 }
-
-export default App
+//<Route exact path="/dogs" element={<Cards />} />
+export default App;

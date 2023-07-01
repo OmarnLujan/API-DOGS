@@ -1,0 +1,17 @@
+.arrow {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.input {
+    display: flex;
+    width: 30px;
+    justify-content: center;
+    
+}
+.container {
+    display: flex;
+    height: 30px;
+    justify-content: center;
+    
+}

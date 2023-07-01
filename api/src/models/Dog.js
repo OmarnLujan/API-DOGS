@@ -34,6 +34,7 @@ module.exports = (sequelize) => {
     image: {
        type: DataTypes.STRING,
        allowNull: false,
+       defaultValue: "https://album.mediaset.es/eimg/10000/2021/02/17/clipping_VT0sLP_bd15.jpg?w=1200&h=900"
      },
      life_span: {
        type: DataTypes.STRING,
