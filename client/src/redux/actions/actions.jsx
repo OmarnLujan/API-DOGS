@@ -49,6 +49,9 @@ export function getDogsByName(name) {
         payload: json.data,
       });
     } catch (error) {
+      {
+        console.log(json.response);
+      }
       alert("Dog not Found.");
       //console.log(error.message);
     }
@@ -94,4 +97,16 @@ export function orderDogByWeight(order) {
     type: ORDER_DOG_BY_WEIGHT,
     payload: order,
   };
+}
+export function postDog(dog) {
+    return async (dispatch) => {
+    
+          const response = await axios.post("http://localhost:3001/dogs", dog);
+          console.log(response)
+          dispatch({
+            type: POST_DOG,
+            payload: response.data,
+          });
+        return response;
+      };
 }

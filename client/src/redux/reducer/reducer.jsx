@@ -141,7 +141,8 @@ const reducer = (state = initialState, { type, payload }) => {
     case POST_DOG:
       return {
         ...state,
-        prueba: payload,
+        dogs:[...state.dogs, payload],
+        dogsCopy:[...state.dogsCopy, payload]
       };
 
     default:

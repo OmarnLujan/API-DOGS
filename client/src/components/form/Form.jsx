@@ -1,10 +1,15 @@
 import React, { useState } from "react";
 import styles from "./Form.module.css";
-import { useSelector } from "react-redux";
-
+import { useDispatch, useSelector } from "react-redux";
+import { validate } from "./Validation";
+import { NavLink } from "react-router-dom";
+import { getDogs, postDog } from "../../redux/actions/actions";
 
 function Form(props) {
+  const dispatch = useDispatch();
+
   const allTemperaments = useSelector((state) => state.temperaments);
+  const [selectedTemperaments, setSelectedTemperaments] = useState([]);
   /*   
     ! FORM PAGE |: en esta vista se encontrará el formulario para crear una nueva raza de perro.
     Este formulario debe ser controlado completamente con JavaScritp. No se pueden utilizar validaciones HTML,
@@ -37,7 +42,6 @@ function Form(props) {
     weightMax: "",
     life_span: "",
     image: "",
-    temperament: [],
   });
 
   const handleChange = (e) => {
@@ -52,13 +56,36 @@ function Form(props) {
       })
     );
   };
+  const handleSelectChange = (e, index) => {
+    if (!selectedTemperaments.includes(e.target.value)) {
+      selectedTemperaments[index] = e.target.value;
+      console.log(selectedTemperaments);
+    }
+  };
   const handlerSubmit = (event) => {
     event.preventDefault();
-    props.login(dogData);
+    setDogData((prevDogData) => ({
+      ...prevDogData,
+      temperament: selectedTemperaments,
+    }));
+    dispatch(postDog(dogData))
+    dispatch(getDogs(dogData))
+    console.log(dogData);
+    
+  };
+  //funcion para agregar mas select de temperamentos
+  const handleAddSelect = () => {
+    setSelectedTemperaments([...selectedTemperaments, ""]);
+    console.log(selectedTemperaments);
   };
 
   return (
     <div>
+      <div>
+        <NavLink to="/home">
+          <button className={styles.button}>Home</button>
+        </NavLink>
+      </div>
       <form onSubmit={handlerSubmit} className={styles.login}>
         <div className={styles.fondoLogin}>
           <input
@@ -135,14 +162,24 @@ function Form(props) {
             onChange={handleChange}
           />
           <p style={{ color: "red" }}>{errors.image ? errors.image : null}</p>
-          <select name="filterTemperament" onChange={handleChange}>
-            {allTemperaments.sort().map((temperament) => (
-              <option key={temperament} value={temperament}>
-                {temperament}
-              </option>
-            ))}
-          </select>
 
+          <div>
+            {selectedTemperaments.map((selected, index) => (
+              <select
+                key={index}
+                name={`filterTemperament-${index}`}
+                value={selected}
+                onChange={(e) => handleSelectChange(e, index)}
+              >
+                {allTemperaments.sort().map((temperament) => (
+                  <option key={temperament} value={temperament}>
+                    {temperament}
+                  </option>
+                ))}
+              </select>
+            ))}
+            <button onClick={handleAddSelect}>Agregar Select</button>
+          </div>
           <button
             className={styles.signin}
             type="submit"
@@ -166,3 +203,13 @@ function Form(props) {
 }
 
 export default Form;
+
+{
+  /* <select name="filterTemperament" onChange={handleChange}>
+            {allTemperaments.sort().map((temperament) => (
+              <option key={temperament} value={temperament}>
+                {temperament}
+              </option>
+            ))}
+          </select> */
+}

@@ -50,7 +50,7 @@ const postDog = async (name, heightMin, heightMax, weightMin, weightMax, life_sp
     await newDog.addTemperament(tempsEncontrados);
 
     //console.log(newDog);
-    return newDog;
+    return "Raza creada";
 };
 let dog2 = {
     name: "pepito",
