@@ -4,7 +4,7 @@
   font-weight: 400;
 
   color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
+  color: rgba(0, 0, 0, 0.87);
   background-color: #242424;
 
   font-synthesis: none;
@@ -24,6 +24,9 @@ a:hover {
 }
 
 body {
+  background-image:url("https://static.vecteezy.com/system/resources/previews/005/863/122/large_2x/dog-or-cat-footprints-paw-print-dog-footprints-paw-foot-trail-print-on-white-background-free-vector.jpg");
+  background-size: auto;
+  background-attachment: fixed;
   margin: 0;
   display: flex;
   place-items: center;

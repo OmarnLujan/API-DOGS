@@ -8,7 +8,6 @@ import {
   GET_TEMPERAMENTS,
   ORDER_DOG_BY_NAME,
   ORDER_DOG_BY_WEIGHT,
-  REMOVE_DOG,
   POST_DOG,
 } from "../actions/types.jsx";
 
@@ -82,9 +81,9 @@ const reducer = (state = initialState, { type, payload }) => {
         temperaments: payload,
       };
     case ORDER_DOG_BY_NAME:
-      let orderedDog = [...state.dogs];
+      let orderedDog = [...state.dogsCopy];
       if (payload === "A") {
-        orderedDog = state.dogs.sort((a, b) => {
+        orderedDog.sort((a, b) => {
           if (a.name > b.name) {
             return 1;
           }
@@ -94,7 +93,7 @@ const reducer = (state = initialState, { type, payload }) => {
           return 0;
         });
       } else if (payload === "D") {
-        orderedDog = state.dogs.sort((a, b) => {
+        orderedDog.sort((a, b) => {
           if (a.name > b.name) {
             return -1;
           }
@@ -105,12 +104,12 @@ const reducer = (state = initialState, { type, payload }) => {
       }
       return {
         ...state,
-        dogs: orderedDog,
+        dogsCopy: orderedDog,
       };
     case ORDER_DOG_BY_WEIGHT:
-      let orderedDogWeight = [...state.dogs];
+      let orderedDogWeight = [...state.dogsCopy];
       if (payload === "A") {
-        orderedDogWeight = state.dogs.sort((a, b) => {
+        orderedDogWeight =orderedDogWeight.sort((a, b) => {
           if (a.weightMin > b.weightMin) {
             return 1;
           }
@@ -120,7 +119,7 @@ const reducer = (state = initialState, { type, payload }) => {
           return 0;
         });
       } else if (payload === "D") {
-        orderedDogWeight = state.dogs.sort((a, b) => {
+        orderedDogWeight=orderedDogWeight.sort((a, b) => {
           if (a.weightMin > b.weightMin) {
             return -1;
           }
@@ -131,12 +130,7 @@ const reducer = (state = initialState, { type, payload }) => {
       }
       return {
         ...state,
-        dogs: orderedDogWeight,
-      };
-    case REMOVE_DOG:
-      return {
-        ...state,
-        prueba: payload,
+        dogsCopy: orderedDogWeight,
       };
     case POST_DOG:
       return {

@@ -1,0 +1,40 @@
+* {
+  margin: 0;
+  padding: 0;
+
+  box-sizing: border-box;
+  font-family: 'Quicksand', sans-serif;
+}
+
+.containerButton {
+  position: absolute;
+  background: transparent;
+  display: flex;
+  border: none;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  left: 45%;
+  top: -200px;
+}
+
+.boneButton {
+  border: none;
+
+  background: transparent;
+  width: 150px;
+  height: 100px;
+  padding: 10px 20px;
+}
+
+.image {
+  width: 500px;
+  height: 450px;
+  background: transparent;
+}
+
+.image2 {
+  width: 150px;
+  height: 100px;
+  background: transparent;
+}

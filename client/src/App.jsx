@@ -1,12 +1,10 @@
 import "./App.css";
-import axios from "axios";
 import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 // *! rafc recordar 
 import Home from "./components/home/Home";
 import Detail from "./components/detail/Detail";
 import Form from "./components/form/Form";
-import Nav from "./components/nav/nav";
 import Landing from "./components/landing/Landing";
 
 

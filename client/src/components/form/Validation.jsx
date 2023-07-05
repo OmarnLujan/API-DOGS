@@ -42,9 +42,6 @@ export function validate(dogData) {
   if (!regexNumber.test(dogData.weightMin)) {
     errors.weightMin = "Debe ingresar un Peso minimo valido";
   }
-  if (dogData.weightMin > dogData.weightMax) {
-    errors.weightMin = "El peso minimo no puede ser mayor al maximo";
-  }
   if (!dogData.weightMin) {
     errors.weightMin = "Ingrese un Peso minimo.";
   }

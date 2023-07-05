@@ -1,11 +1,104 @@
+
 .boton3 {
-    position: relative;
-    bottom: -100px;
-    left: 0px;
-    width: 100px;
-    height: 100px;
-     background: transparent; 
-    border: none;
-    cursor: pointer;
-    outline: none;
-  }
+  position: relative;
+  background: transparent;
+  bottom: 0px;
+  left: 0px;
+  width: 190px;
+  height: 254px;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  
+}
+.card {
+  overflow: visible;
+  position: relative;
+  width: 190px;
+  height: 254px;
+  background: #c97136;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, .2);
+}
+
+.card:before,
+.card:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 4px;
+  background: #a55a27;
+  transition: 0.5s;
+  z-index: -99;
+}
+
+.details {
+  position: absolute;
+  margin: 0px  10px 10px 0 ;
+
+  padding: 0px 5px;
+  background-color: transparent;
+  left: 4px;
+  right: 0;
+  bottom: 00px;
+  height: 60px;
+  text-align: center;
+  text-transform: uppercase;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/*Image*/
+.imgbox {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  bottom: 10px;
+  right: 10px;
+  background: #222;
+  transition: 0.5s;
+  z-index: 1;
+}
+
+.img {
+  background: #c97136;
+
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/*Text*/
+.title {
+  font-weight: 640;
+  font-size: 20px;
+  color: #000000a0;
+  
+}
+
+.caption {
+  font-weight: 500;
+  font-size: 16px;
+  color: #4158D0;
+  display: block;
+  margin-top: 5px;
+}
+
+/*Hover*/
+.card:hover .imgbox {
+  bottom: 80px;
+}
+
+.card:hover:before {
+  transform: rotate(20deg);
+}
+
+.card:hover:after {
+  transform: rotate(10deg);
+  box-shadow: 0 2px 20px rgba(0, 0, 0, .2);
+}

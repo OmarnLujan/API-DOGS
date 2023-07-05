@@ -5,24 +5,12 @@ import { validate } from "./Validation";
 import { NavLink } from "react-router-dom";
 import { getDogs, postDog } from "../../redux/actions/actions";
 
-function Form(props) {
+function Form() {
   const dispatch = useDispatch();
 
   const allTemperaments = useSelector((state) => state.temperaments);
   const [selectedTemperaments, setSelectedTemperaments] = useState([]);
-  /*   
-    ! FORM PAGE |: en esta vista se encontrará el formulario para crear una nueva raza de perro.
-    Este formulario debe ser controlado completamente con JavaScritp. No se pueden utilizar validaciones HTML,
-     ni utilizar librerías especiales para esto. Debe contar con los siguientes campos:
-    
-    Nombre.Altura (diferenciar entre altura mínima y máxima de la raza).
-    Peso (diferenciar entre peso mínimo y máximo de la raza).
-    Años de vida.
-    Posibilidad de seleccionar/agregar varios temperamentos en simultáneo.
-    Botón para crear la nueva raza.
-    [IMPORANTE]: es requisito que el formulario de creación esté validado sólo con JavaScript.
-     Puedes agregar las validaciones que consideres. Por ejemplo: que el nombre de la raza no pueda contener números,
-      o que el peso/altura mínimo no pueda ser mayor al máximo. */
+
   const [dogData, setDogData] = useState({
     name: "",
     heightMin: "",
@@ -58,144 +46,164 @@ function Form(props) {
   };
   const handleSelectChange = (e, index) => {
     if (!selectedTemperaments.includes(e.target.value)) {
-      selectedTemperaments[index] = e.target.value;
-      console.log(selectedTemperaments);
+      const { value } = e.target;
+      setSelectedTemperaments((prevTemperaments) => {
+        const updatedTemperaments = [...prevTemperaments];
+        updatedTemperaments[index] = value;
+        console.log(selectedTemperaments);
+        return updatedTemperaments;
+      });
     }
   };
-  const handlerSubmit = (event) => {
+  
+  const handlerSubmit =(event) => {
     event.preventDefault();
     setDogData((prevDogData) => ({
       ...prevDogData,
       temperament: selectedTemperaments,
     }));
-    dispatch(postDog(dogData))
-    dispatch(getDogs(dogData))
-    console.log(dogData);
     
+    console.log(dogData)
+
+    dispatch(postDog(dogData));
+    dispatch(getDogs(dogData));
   };
+
   //funcion para agregar mas select de temperamentos
   const handleAddSelect = () => {
     setSelectedTemperaments([...selectedTemperaments, ""]);
-    console.log(selectedTemperaments);
+    //console.log(selectedTemperaments);
   };
-
+  
   return (
     <div>
-      <div>
+      <h2>Create Dog</h2>
+      <div className={styles.divButton}>
         <NavLink to="/home">
-          <button className={styles.button}>Home</button>
+          <button className={styles.Button}>Home</button>
         </NavLink>
       </div>
       <form onSubmit={handlerSubmit} className={styles.login}>
-        <div className={styles.fondoLogin}>
-          <input
-            className={styles.inputBox}
-            placeholder="name.."
-            name="name"
-            value={dogData.name}
-            type="text"
-            onChange={handleChange}
-          />
-          <p style={{ color: "red" }}>{errors.name ? errors.name : null}</p>
+        <div className={styles.fondoDiv}>
+          <div className={styles.inputWrapper}>
+            <input
+              className={styles.input}
+              placeholder="Name"
+              name="name"
+              value={dogData.name}
+              type="text"
+              onChange={handleChange}
+            />
+            <p style={{ color: "red" }}>{errors.name ? errors.name : null}</p>
+          </div>
+          <div className={styles.inputWrapper}>
+            <input
+              className={styles.input}
+              placeholder="Minimum Weight"
+              name="heightMin"
+              value={dogData.heightMin}
+              type="text"
+              onChange={handleChange}
+            />
 
-          <input
-            className={styles.inputBox2}
-            placeholder="Min"
-            name="heightMin"
-            value={dogData.heightMin}
-            type="text"
-            onChange={handleChange}
-          />
-          <p style={{ color: "red" }}>
-            {errors.heightMin ? errors.heightMin : null}
-          </p>
-          <input
-            className={styles.inputBox2}
-            placeholder="Max"
-            name="heightMax"
-            value={dogData.heightMax}
-            type="text"
-            onChange={handleChange}
-          />
-          <p style={{ color: "red" }}>
-            {errors.heightMax ? errors.heightMax : null}
-          </p>
-          <input
-            className={styles.inputBox2}
-            placeholder="Min"
-            name="weightMin"
-            value={dogData.weightMin}
-            type="text"
-            onChange={handleChange}
-          />
-          <p style={{ color: "red" }}>
-            {errors.weightMin ? errors.weightMin : null}
-          </p>
-          <input
-            className={styles.inputBox2}
-            placeholder="Max"
-            name="weightMax"
-            value={dogData.weightMax}
-            type="text"
-            onChange={handleChange}
-          />
-          <p style={{ color: "red" }}>
-            {errors.weightMax ? errors.weightMax : null}
-          </p>
-          <input
-            className={styles.inputBox2}
-            placeholder="life_span"
-            name="life_span"
-            value={dogData.life_span}
-            type="text"
-            onChange={handleChange}
-          />
-          <p style={{ color: "red" }}>
-            {errors.life_span ? errors.life_span : null}
-          </p>
-          <input
-            className={styles.inputBox2}
-            placeholder="link image"
-            name="image"
-            value={dogData.image}
-            type="text"
-            onChange={handleChange}
-          />
-          <p style={{ color: "red" }}>{errors.image ? errors.image : null}</p>
+            <input
+              className={styles.input}
+              placeholder="Maximum Weight"
+              name="heightMax"
+              value={dogData.heightMax}
+              type="text"
+              onChange={handleChange}
+            />
+            <p style={{ color: "red" }}>
+              {errors.heightMin ? errors.heightMin : null}
+              {errors.heightMax ? errors.heightMax : null}
+            </p>
+          </div>
+          <div className={styles.inputWrapper}>
+            <input
+              className={styles.input}
+              placeholder="Minimum Weight"
+              name="weightMin"
+              value={dogData.weightMin}
+              type="text"
+              onChange={handleChange}
+            />
 
-          <div>
+            <input
+              className={styles.input}
+              placeholder="Maximum Weight"
+              name="weightMax"
+              value={dogData.weightMax}
+              type="text"
+              onChange={handleChange}
+            />
+            <p style={{ color: "red" }}>
+              {errors.weightMin ? errors.weightMin : null}
+              {errors.weightMax ? errors.weightMax : null}
+            </p>
+          </div>
+          <div className={styles.inputWrapper}>
+            <input
+              className={styles.input}
+              placeholder="Life Span"
+              name="life_span"
+              value={dogData.life_span}
+              type="text"
+              onChange={handleChange}
+            />
+            <p style={{ color: "red" }}>
+              {errors.life_span ? errors.life_span : null}
+            </p>
+          </div>
+          <div className={styles.inputWrapper}>
+            <input
+              className={styles.input}
+              placeholder="Link Image"
+              name="image"
+              value={dogData.image}
+              type="text"
+              onChange={handleChange}
+            />
+            <p style={{ color: "red" }}>{errors.image ? errors.image : null}</p>
+          </div>
+          <div >
+            <p ><strong>Temperament:</strong></p>
             {selectedTemperaments.map((selected, index) => (
-              <select
+              <select 
+              className={styles.Select}
                 key={index}
                 name={`filterTemperament-${index}`}
                 value={selected}
                 onChange={(e) => handleSelectChange(e, index)}
               >
                 {allTemperaments.sort().map((temperament) => (
-                  <option key={temperament} value={temperament}>
+                  <option  key={temperament} value={temperament}>
                     {temperament}
                   </option>
                 ))}
               </select>
             ))}
-            <button onClick={handleAddSelect}>Agregar Select</button>
+            <button className={styles.Button2} type="button" disabled={selectedTemperaments.length>9}onClick={handleAddSelect}>Add</button>
           </div>
-          <button
-            className={styles.signin}
-            type="submit"
-            disabled={
-              errors.name ||
-              errors.heightMin ||
-              errors.heightMax ||
-              errors.weightMin ||
-              errors.weightMax ||
-              errors.life_span ||
-              errors.image ||
-              errors.temperament
-            }
-          >
-            Enviar
-          </button>
+          
+            <button
+              className={styles.Button}
+              type="submit"
+              disabled={
+                errors.name ||
+                errors.heightMin ||
+                errors.heightMax ||
+                errors.weightMin ||
+                errors.weightMax ||
+                errors.life_span ||
+                errors.image ||
+                errors.temperament ||
+                selectedTemperaments.length === 0
+              }
+            >
+              Create
+            </button>
+          
         </div>
       </form>
     </div>

@@ -1,4 +1,4 @@
-const { getAllDogs} = require("./getDogs");
+const { getAllDogs } = require("./getDogs");
 const { Dog, Temperament } = require("../db");
 const { getTemperaments } = require("./getTemperaments");
 
@@ -8,6 +8,8 @@ const postDog = async (name, heightMin, heightMax, weightMin, weightMax, life_sp
     console.log()
     const alldogs = await getAllDogs();
     const dogs = alldogs.filter(d => d.name === name)
+
+
 
     if (dogs.length) {
         throw new Error("La raza ya existe");
@@ -34,7 +36,18 @@ const postDog = async (name, heightMin, heightMax, weightMin, weightMax, life_sp
             }
             return tempEncontrado;
         })
-    );
+    ); //https://biotrendies.com/wp-content/uploads/2015/07/lechuga.jpg
+
+    function capitalizeWords(inputString) {
+        const words = inputString.toLowerCase().split(' ');
+
+        for (let i = 0; i < words.length; i++) {
+            words[i] = words[i].charAt(0).toUpperCase() + words[i].slice(1);
+        }
+
+        return words.join(' ');
+    }
+    name = capitalizeWords(name)
     const newDog = await Dog.create({
         name: name,
         heightMin: heightMin,
@@ -52,7 +65,7 @@ const postDog = async (name, heightMin, heightMax, weightMin, weightMax, life_sp
     //console.log(newDog);
     return "Raza creada";
 };
-let dog2 = {
+/* let dog2 = {
     name: "pepito",
     heightMin: 2,
     heightMax: 4,
@@ -61,7 +74,7 @@ let dog2 = {
     life_span: 10,
     image: "image",
     temperament: ["Bubbly", "Curius"]
-}
+} */
 //postDog("Gaba",2,4,10,12,12,"image",["Bubbly", "Curious"]);
 //
 
