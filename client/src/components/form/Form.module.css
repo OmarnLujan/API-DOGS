@@ -1,21 +1,68 @@
-.divButton{
+.divButton {
     position: absolute;
     left: 10px;
     top: 10px;
     border-radius: 20px;
 }
+
+.selectContainer {
+    display: inline;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    outline: none;
+    background: none;
+}
+
+.removeButton {
+    margin-left: -30px;
+    width: 0.5em;
+    height: 1em;
+    background-color: transparent;
+    display: inline;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    outline: none;
+    background: none;
+}
+.removeButton:focus {
+    outline: none;
+  }
+.divFondo {
+    background-color: #eee;
+    border-radius: 20px;
+    width: 800px;
+    margin: 30px;
+    height: 800px;
+}
+
 .Select {
     width: 6em;
-    margin: 10px;
+    margin: 15px;
     height: 2.5em;
     border-radius: 20px;
     display: inline;
     justify-content: center;
     align-items: center;
 }
-.Button{
+
+.Button {
     background-color: #c97136;
-    color: #0b0909;
+    color: #2e2929;
+    border: none;
+    padding: 1rem;
+    font-size: 1rem;
+    width: 8em;
+    border-radius: 2rem;
+    margin-top: 10px;
+    box-shadow: 0 0.4rem #dfd9d9;
+    cursor: pointer;
+}
+
+.Button:disabled {
+    background-color: #5f5651;
+    color: #210f0f;
     border: none;
     padding: 1rem;
     font-size: 1rem;
@@ -25,32 +72,45 @@
     box-shadow: 0 0.4rem #dfd9d9;
     cursor: pointer;
 }
-.Button2{
+
+.Button2 {
     background-color: #c97136;
     color: #0b0909;
     border: none;
-    padding: 0,6rem;
+    padding: 0, 6rem;
     font-size: 1rem;
     width: 4em;
     border-radius: 2rem;
-   
     box-shadow: 0 0.4rem #dfd9d9;
     cursor: pointer;
 }
+
+.Button2:disabled {
+    background-color: #5f5651;
+    color: #000000;
+    border: none;
+    padding: 0, 6rem;
+    font-size: 1rem;
+    width: 4em;
+    border-radius: 2rem;
+    box-shadow: 0 0.4rem #dfd9d9;
+    cursor: pointer;
+}
+
 .inputWrapper input {
-    display: inline-flex ;
+    display: inline-flex;
     background-color: #eee;
     border: none;
-    margin: 10px;
+    margin: 15px;
     padding: 1rem;
     font-size: 1rem;
     width: 13em;
     border-radius: 1rem;
-    color: lightcoral;
+    color: rgb(87, 85, 85);
     box-shadow: 0 0.4rem #dfd9d9;
     cursor: pointer;
-  }
-  
-  .inputWrapper input:focus {
-    outline-color: lightcoral;
-  }
+}
+
+.inputWrapper input:focus {
+    outline-color: rgb(0, 0, 0);
+}

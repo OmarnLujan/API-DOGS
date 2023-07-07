@@ -48,10 +48,9 @@
   text-transform: uppercase;
   overflow: hidden;
   text-overflow: ellipsis;
-  white-space: nowrap;
+ 
 }
 
-/*Image*/
 .imgbox {
   position: absolute;
   top: 10px;

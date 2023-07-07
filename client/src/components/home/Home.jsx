@@ -59,7 +59,8 @@ function Home() {
           </button>
         </div>
         <div>
-          <SearchBar />
+          <SearchBar currentPage={currentPage}
+          setCurrentPage={setCurrentPage} />
         </div>
         <h2 className={styles.h2T}>Filter by: </h2>
         <h3 className={styles.h2T}>Name</h3>

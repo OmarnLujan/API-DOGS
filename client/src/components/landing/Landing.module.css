@@ -20,11 +20,16 @@
 
 .boneButton {
   border: none;
-
+  outline: none;
   background: transparent;
   width: 150px;
   height: 100px;
   padding: 10px 20px;
+}
+
+.boneButton:focus {
+  outline: none;
+
 }
 
 .image {

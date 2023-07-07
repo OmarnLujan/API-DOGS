@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./Form.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { validate } from "./Validation";
@@ -45,26 +45,37 @@ function Form() {
     );
   };
   const handleSelectChange = (e, index) => {
+    if (selectedTemperaments.includes(e.target.value)) {
+      window.alert("Temperamento repetido ");
+    }
+
     if (!selectedTemperaments.includes(e.target.value)) {
       const { value } = e.target;
       setSelectedTemperaments((prevTemperaments) => {
         const updatedTemperaments = [...prevTemperaments];
         updatedTemperaments[index] = value;
-        console.log(selectedTemperaments);
+        console.log(updatedTemperaments);
         return updatedTemperaments;
       });
     }
-  };
-  
-  const handlerSubmit =(event) => {
-    event.preventDefault();
+
     setDogData((prevDogData) => ({
       ...prevDogData,
       temperament: selectedTemperaments,
     }));
-    
-    console.log(dogData)
+    console.log(selectedTemperaments);
+  };
 
+  useEffect(() => {
+    // Actualizar dogData.temperament cuando selectedTemperaments cambie
+    setDogData((prevDogData) => ({
+      ...prevDogData,
+      temperament: selectedTemperaments,
+    }));
+  }, [selectedTemperaments]);
+
+  const handlerSubmit = async(event) => {
+    event.preventDefault();
     dispatch(postDog(dogData));
     dispatch(getDogs(dogData));
   };
@@ -74,9 +85,20 @@ function Form() {
     setSelectedTemperaments([...selectedTemperaments, ""]);
     //console.log(selectedTemperaments);
   };
-  
+  // !verificar validaciones del formulario ✅
+  // !verificar que las card de la db muestren el temperamento ✅
+  // !verificar avisar que los temperametos se repiten  ✅
+  // *verificar añadir boton para eliminar select ✅
+
+  const handleRemoveSelect = (index) => {
+    setSelectedTemperaments((prevTemperaments) =>
+      prevTemperaments.filter((_, i) => i !== index)
+    );
+    console.log(selectedTemperaments);
+  };
+
   return (
-    <div>
+    <div className={styles.divFondo}>
       <h2>Create Dog</h2>
       <div className={styles.divButton}>
         <NavLink to="/home">
@@ -116,6 +138,8 @@ function Form() {
             />
             <p style={{ color: "red" }}>
               {errors.heightMin ? errors.heightMin : null}
+            </p>
+            <p style={{ color: "red" }}>
               {errors.heightMax ? errors.heightMax : null}
             </p>
           </div>
@@ -139,6 +163,8 @@ function Form() {
             />
             <p style={{ color: "red" }}>
               {errors.weightMin ? errors.weightMin : null}
+            </p>
+            <p style={{ color: "red", display: "inline" }}>
               {errors.weightMax ? errors.weightMax : null}
             </p>
           </div>
@@ -166,44 +192,61 @@ function Form() {
             />
             <p style={{ color: "red" }}>{errors.image ? errors.image : null}</p>
           </div>
-          <div >
-            <p ><strong>Temperament:</strong></p>
+          <div>
+            <p>
+              <strong>Temperament:</strong>
+            </p>
             {selectedTemperaments.map((selected, index) => (
-              <select 
-              className={styles.Select}
-                key={index}
-                name={`filterTemperament-${index}`}
-                value={selected}
-                onChange={(e) => handleSelectChange(e, index)}
-              >
-                {allTemperaments.sort().map((temperament) => (
-                  <option  key={temperament} value={temperament}>
-                    {temperament}
-                  </option>
-                ))}
-              </select>
+              <div key={index} className={styles.selectContainer}>
+                <select
+                  className={styles.Select}
+                  key={index}
+                  name={`filterTemperament-${index}`}
+                  value={selected}
+                  onChange={(e) => handleSelectChange(e, index)}
+                >
+                  {allTemperaments.sort().map((temperament) => (
+                    <option key={temperament} value={temperament}>
+                      {temperament}
+                    </option>
+                  ))}
+                </select>
+                <button
+                  type="button"
+                  className={styles.removeButton}
+                  onClick={() => handleRemoveSelect(index)}
+                >
+                  ❌
+                </button>
+              </div>
             ))}
-            <button className={styles.Button2} type="button" disabled={selectedTemperaments.length>9}onClick={handleAddSelect}>Add</button>
-          </div>
-          
             <button
-              className={styles.Button}
-              type="submit"
-              disabled={
-                errors.name ||
-                errors.heightMin ||
-                errors.heightMax ||
-                errors.weightMin ||
-                errors.weightMax ||
-                errors.life_span ||
-                errors.image ||
-                errors.temperament ||
-                selectedTemperaments.length === 0
-              }
+              className={styles.Button2}
+              type="button"
+              disabled={selectedTemperaments.length > 9}
+              onClick={handleAddSelect}
             >
-              Create
+              Add
             </button>
-          
+          </div>
+
+          <button
+            className={styles.Button}
+            type="submit"
+            disabled={
+              errors.name ||
+              errors.heightMin ||
+              errors.heightMax ||
+              errors.weightMin ||
+              errors.weightMax ||
+              errors.life_span ||
+              errors.image ||
+              errors.temperament ||
+              !selectedTemperaments.length
+            }
+          >
+            Create
+          </button>
         </div>
       </form>
     </div>
@@ -211,13 +254,3 @@ function Form() {
 }
 
 export default Form;
-
-{
-  /* <select name="filterTemperament" onChange={handleChange}>
-            {allTemperaments.sort().map((temperament) => (
-              <option key={temperament} value={temperament}>
-                {temperament}
-              </option>
-            ))}
-          </select> */
-}

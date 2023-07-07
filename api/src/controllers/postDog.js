@@ -75,8 +75,9 @@ const postDog = async (name, heightMin, heightMax, weightMin, weightMax, life_sp
     image: "image",
     temperament: ["Bubbly", "Curius"]
 } */
-//postDog("Gaba",2,4,10,12,12,"image",["Bubbly", "Curious"]);
-//
+//postDog("Gaba",4,5,11,12,22,"https://para-perros.online/wp-content/uploads/2018/10/fotos-perritos-tiernos-pug.jpg",["Bubbly", "Curious"]);
+
+
 
 module.exports = { postDog };
 

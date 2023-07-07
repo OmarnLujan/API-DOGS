@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./Pagination.module.css";
 
 export const Pagination = ({ currentPage, setCurrentPage, maximo }) => {
@@ -20,6 +20,11 @@ export const Pagination = ({ currentPage, setCurrentPage, maximo }) => {
     setInput(maximo);
     setCurrentPage(maximo);
   };
+
+  useEffect(()=> {
+    setInput(currentPage);
+  
+  })
   const onKeyDown = (e) => {
     if (e.keyCode == 13) {
       if (

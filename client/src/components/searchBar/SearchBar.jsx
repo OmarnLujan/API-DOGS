@@ -4,7 +4,7 @@ import { getDogs, getDogsByName } from "../../redux/actions/actions";
 import styles from "./SearchBar.module.css";
 
 
-function SearchBar(props) {
+function SearchBar({ currentPage, setCurrentPage }) {
   const [search, setSearch] = useState("");
   const dispatch = useDispatch();
 
@@ -14,6 +14,7 @@ function SearchBar(props) {
       alert('Dog not Found.');
     }
     dispatch(getDogsByName(searchDog));
+    setCurrentPage(1);
   };
 
   const handleChange = (e) => {

@@ -4,7 +4,7 @@ export function validate(dogData) {
   const regexNumber = new RegExp("[0-9]");
 
   if (!regexString.test(dogData.name)) {
-    errors.name = "Debe ingresar un nombre valido";
+    errors.name = "Ingresar un nombre valido.";
   }
   if (!dogData.name) {
     errors.name = "Ingrese un nombre.";
@@ -14,11 +14,9 @@ export function validate(dogData) {
   }
   //------------------------------------------------
   if (!regexNumber.test(dogData.heightMin)) {
-    errors.heightMin = "Debe ingresar una altura minima valida";
+    errors.heightMin = "Ingresar una altura minima valida.";
   }
-  if (dogData.heightMin > dogData.heightMax) {
-    errors.heightMin = "La altura minima no puede ser mayor a la maxima";
-  }
+
   if (!dogData.heightMin) {
     errors.heightMin = "Ingrese una altura minima.";
   }
@@ -27,10 +25,10 @@ export function validate(dogData) {
   }
   //------------------------------------------------
   if (!regexNumber.test(dogData.heightMax)) {
-    errors.heightMin = "Debe ingresar una altura minima valida";
+    errors.heightMin = "Ingresar una altura maxima valida.";
   }
   if (dogData.heightMax < dogData.heightMin) {
-    errors.heightMax = "La altura maxima no puede ser menor al minimo";
+    errors.heightMin = "La altura maxima no puede ser menor a la minima.";
   }
   if (!dogData.heightMax) {
     errors.heightMax = "Ingrese una altura maxima.";
@@ -40,7 +38,10 @@ export function validate(dogData) {
   }
   //------------------------------------------------
   if (!regexNumber.test(dogData.weightMin)) {
-    errors.weightMin = "Debe ingresar un Peso minimo valido";
+    errors.weightMin = "Ingresar un Peso minimo valido.";
+  }
+  if (dogData.weightMin > dogData.weightMax) {
+    errors.weightMin = "El peso maximo no puede ser menor al minimo.";
   }
   if (!dogData.weightMin) {
     errors.weightMin = "Ingrese un Peso minimo.";
@@ -50,11 +51,9 @@ export function validate(dogData) {
   }
   //------------------------------------------------
   if (!regexNumber.test(dogData.weightMax)) {
-    errors.weightMax = "Debe ingresar un Peso maximo valido";
+    errors.weightMax = "Ingresar un Peso maximo valido.";
   }
-  if (dogData.weightMax < dogData.weightMin) {
-    errors.weightMax = "El peso maximo no puede ser menor al maximo";
-  }
+  
   if (!dogData.weightMax) {
     errors.weightMax = "Ingrese un Peso maximo.";
   }
@@ -63,7 +62,7 @@ export function validate(dogData) {
   }
   //------------------------------------------------
   if (!regexNumber.test(dogData.life_span)) {
-    errors.life_span = "Debe ingresar una esperanza de vida valida";
+    errors.life_span = "Ingresar una esperanza de vida valida.";
   }
   if (!dogData.life_span) {
     errors.life_span = "Ingrese una esperanza de vida.";
@@ -71,7 +70,7 @@ export function validate(dogData) {
   
   //------------------------------------------------
   if (!dogData.image) {
-    errors.weightMax = "Ingrese el link de una imagen.";
+    errors.image = "Ingrese el link de una imagen.";
   }
 
   //------------------------------------------------
