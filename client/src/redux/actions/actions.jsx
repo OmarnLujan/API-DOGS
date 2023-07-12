@@ -50,6 +50,7 @@ export function getDogsByName(name) {
       });
     } catch (error) {
       alert("Dog not Found.");
+
       //console.log(error.message);
     }
   };
@@ -99,7 +100,7 @@ export function postDog(dog) {
   return async (dispatch) => {
     try {
       const response = await axios.post("http://localhost:3001/dogs", dog);
-      console.log(response.data);
+      window.alert(response.data);
     } catch (error) {
       console.log(error.message);
     }

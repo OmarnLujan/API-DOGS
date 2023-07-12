@@ -31,8 +31,8 @@ const Detail = () => {
             className={styles.cardImage}
             src={detail.image}
             alt={detail.name}
-            width="400"
-            height="300"
+            width="500"
+            height="400"
           />
         </div>
         <p className={styles.cardTitle}>{detail.name}</p>

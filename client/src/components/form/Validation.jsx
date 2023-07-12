@@ -27,7 +27,7 @@ export function validate(dogData) {
   if (!regexNumber.test(dogData.heightMax)) {
     errors.heightMin = "Ingresar una altura maxima valida.";
   }
-  if (dogData.heightMax < dogData.heightMin) {
+  if (parseInt(dogData.heightMax) < parseInt(dogData.heightMin)) {
     errors.heightMin = "La altura maxima no puede ser menor a la minima.";
   }
   if (!dogData.heightMax) {
@@ -40,7 +40,7 @@ export function validate(dogData) {
   if (!regexNumber.test(dogData.weightMin)) {
     errors.weightMin = "Ingresar un Peso minimo valido.";
   }
-  if (dogData.weightMin > dogData.weightMax) {
+  if (parseInt(dogData.weightMin) > parseInt(dogData.weightMax)) {
     errors.weightMin = "El peso maximo no puede ser menor al minimo.";
   }
   if (!dogData.weightMin) {

@@ -47,6 +47,7 @@ function Form() {
   const handleSelectChange = (e, index) => {
     if (selectedTemperaments.includes(e.target.value)) {
       window.alert("Temperamento repetido ");
+      return;
     }
 
     if (!selectedTemperaments.includes(e.target.value)) {
@@ -242,7 +243,8 @@ function Form() {
               errors.life_span ||
               errors.image ||
               errors.temperament ||
-              !selectedTemperaments.length
+              !selectedTemperaments.length ||
+              selectedTemperaments.includes("")
             }
           >
             Create

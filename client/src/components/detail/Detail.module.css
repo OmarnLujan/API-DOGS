@@ -1,9 +1,9 @@
 
 .card {
     padding: 20px;
-    width: 440px;
- 
-    min-height: 370px;
+    width: 600px;
+  height: 700px;
+    min-height: 400px;
     border-radius: 20px;
     background: #c97136;
     box-shadow: 5px 5px 8px #1b1b1b,
@@ -23,7 +23,7 @@
   }
   
   .cardImage {
-    min-height: 170px;
+    min-height: 200px;
     background-color: #c97136;
     border-radius: 15px;
     background: #c97136;
@@ -46,10 +46,11 @@
     position: absolute;
     left: 10px;
     top: 10px;
+    width: 100px;height: 100px;
     border-radius: 20px;
 }
 .Button{
     background-color: #c97136;
     color: #0b0909;
-
+  
 }
