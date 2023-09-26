@@ -23,7 +23,7 @@ const getAPIDogs = async () => {
       heightMax: heightMax,
       temperament: dato.temperament,
       life_span: dato.life_span,
-      image: dato.image.url,
+      image: `https://cdn2.thedogapi.com/images/${dato.reference_image_id}.jpg`,
       intheDB: false
     };
     //console.log(dog);
